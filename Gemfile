@@ -67,3 +67,5 @@ end
 
 gem "vite_rails"
 gem "vite_ruby"
+gem 'rspec-rails', group: [ :test ]
+gem 'rails-controller-testing', group: [ :test ]
