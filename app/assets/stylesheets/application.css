@@ -18,3 +18,22 @@
  @import "tailwindcss/components";
 
  @import "tailwindcss/utilities";
+
+ body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: white;
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+ }
+
+
+ .bookmark-card .content:hover {
+  backdrop-filter: brightness(50%);
+}
+
+.new-card .content {
+  backdrop-filter: brightness(80%);
+}

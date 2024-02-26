@@ -69,3 +69,9 @@ gem "vite_rails"
 gem "vite_ruby"
 gem 'rspec-rails', group: [ :test ]
 gem 'rails-controller-testing', group: [ :test ]
+gem "autoprefixer-rails"
+gem "font-awesome-sass", "~> 6.1"
+gem "simple_form"
+gem 'simple_form-tailwind'
+gem "sassc-rails"
+gem 'faker'

@@ -1,0 +1,7 @@
+<%= simple_form_for [@list, @bookmark] do |f|  %>
+  <%= f.association :movie, collection: Movie.all.order(:title), prompt: 'Select a movie'  %>
+  <%= f.input :comment  %>
+  <div class="btn bg-slate-900">
+    <%= f.button :submit  %>
+  </div>
+<% end %>
