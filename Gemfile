@@ -75,3 +75,4 @@ gem "simple_form"
 gem 'simple_form-tailwind'
 gem "sassc-rails"
 gem 'faker'
+gem 'devise'
