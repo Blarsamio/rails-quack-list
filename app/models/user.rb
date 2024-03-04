@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :lists, dependent: :destroy
-  has_many :bookmarks, through: :lists
-  has_many :movies, through: :bookmarks
+  has_many :movies, through: :lists
+  has_many :favorites, dependent: :destroy
+  has_many :movies, through: :favorites
+  has_one :favorite_list, -> { where(favorite_list: true) }, class_name: 'List'
 end

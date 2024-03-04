@@ -1,12 +1,14 @@
 class ListsController < ApplicationController
   before_action :set_list, only: :show
-  before_action :set_user, only: %i[index]
+  before_action :set_user, only: :index
 
   def index
     @lists = @user.lists
   end
 
-  def show; end
+  def show
+    @movie = Movie.new
+  end
 
   def new
     @list = List.new
@@ -19,6 +21,12 @@ class ListsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    @list = List.find(params[:id])
+    @list.destroy
+    redirect_to lists_path
   end
 
   private

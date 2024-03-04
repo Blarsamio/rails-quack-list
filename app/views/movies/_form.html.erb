@@ -1,0 +1,4 @@
+<%= simple_form_for @list do |f| %>
+  <%= f.association :movie, collection: Movie.all, label_method: :title, value_method: :id, label: "Movie", prompt: "Choose a movie" %>
+  <%= f.button :submit %>
+<% end %>

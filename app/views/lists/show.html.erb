@@ -1,29 +1,29 @@
-<div class="flex flex-col gap-y-10">
-  <% if @list.bookmarks.empty? %>
+<div class="flex flex-col gap-y-10 grow">
+  <% if @list.movies.empty? %>
     <div class="flex flex-col justify-end self-center h-[60vh] w-full bg-cover top-0" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://m.media-amazon.com/images/M/MV5BZDkxZWJmYTYtZDk3NS00MWQ4LWE1YzctNDlkMWI1NjliYzQyXkEyXkFqcGdeQTNwaW5nZXN0._V1_.jpg')">
       <div class="content self-center pb-16 container">
         <p class="text-4xl font-bold text-white"><%= (@list.name).upcase %></p>
-        <p class="text-xl text-white"><%= @list.bookmarks.count %> movies</p>
+        <p class="text-xl text-white"><%= @list.movies.count %> movies</p>
       </div>
     </div>
   <% else %>
-  <div class="flex flex-col justify-end self-center h-[60vh] w-full bg-cover top-0" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%=@list.bookmarks.first.movie.poster_url %>')">
+  <div class="flex flex-col justify-end self-center h-[60vh] w-full bg-cover top-0" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%=@list.movies.first.poster_url %>')">
     <div class="content self-center pb-16 container">
       <p class="text-4xl font-bold text-white"><%= (@list.name).upcase %></p>
-      <p class="text-xl text-white"><%= @list.bookmarks.count %> movies</p>
+      <p class="text-xl text-white"><%= @list.movies.count %> movies</p>
     </div>
   </div>
   <% end %>
 
   <div class="container flex flex-col self-center w-full justify-center">
     <div class="grid grid-cols-3 gap-y-10 gap-x-1">
-      <% @list.bookmarks.each do |bookmark| %>
+      <% @list.movies.each do |movie| %>
         <div class="col-span-1">
-          <div class="bookmark-card shadow-md flex flex-col justify-end w-full h-[209px] bg-cover hover:cursor-pointer" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= bookmark.movie.poster_url %>');">
+          <div class="bookmark-card shadow-md flex flex-col justify-end w-full h-[209px] bg-cover hover:cursor-pointer" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= movie.poster_url %>');">
             <div class="content w-full h-[209px] pb-5 pl-5 flex flex-col justify-end">
-              <p class="text-xl font-bold text-white card-text"><%= (bookmark.movie.title).upcase %></p>
-              <p class="text-sm text-white card-text"><%= (bookmark.movie.rating).truncate(1) %></p>
-              <p class="text-sm text-white card-text italic"><%= bookmark.movie.tagline %></p>
+              <p class="text-xl font-bold text-white card-text"><%= (movie.title).upcase %></p>
+              <p class="text-sm text-white card-text"><%= (movie.rating).truncate(1) %></p>
+              <p class="text-sm text-white card-text italic"><%= movie.tagline %></p>
             </div>
           </div>
         </div>
@@ -34,6 +34,16 @@
   </div>
 
   <div class="min-h-10 w-40 self-center bg-white rounded-t-xl flex justify-center text-black hover:bg-black hover:text-white transition-all ease-in-out sticky bottom-0 mt-10">
-    <p class="self-center font-bold"><%= link_to "NEW BOOKMARK", new_list_bookmark_path(@list) %></p>
+    <%= simple_form_for @movie do |f| %>
+    <div class="selector self-center">
+          <%= f.association :movie, prompt: "Select a film",
+            input_html: {data: {controller: "tom-select"}, class: "ml-5 h-10 self-center font-inter "},
+            label_html: {class: "self-center font-inter hidden"} %>
+        </div>
+             <div class="boton self-center w-20 h-10 ml-5">
+            <%= f.submit class: "btn-add font-inter font-bold", value: "Add" %>
+          </div>
+      <% end %>
+    </div>
   </div>
 </div>
